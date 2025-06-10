@@ -138,7 +138,7 @@ sr.reveal('.home__social, .home__scroll', {delay: 900, origin: 'bottom'})
 /*=============== TYPED JS ANIMATION ===============*/
 
 let	typed = new Typed(".dynamic__text", {
-	strings: ["Entrepreneur", "Software Developer", "Creative Content Creator", "Motivational Speaker"],
+	strings: ["Visionary Entrepreneur", "Software Developer", "Creative Content Creator", "Motivational Speaker"],
 	typeSpeed: 100,
 	backSpeed: 100,
 	loop: true
