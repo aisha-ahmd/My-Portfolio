@@ -55,7 +55,7 @@
       gallery: { en: 'Grateful',   ar: 'امتنان', bg: '#EFE6D8', ink: '#0F0C09', acc: '#967C5D', glow: '#E9B872', words: [['Kindness', 'لُطف'], ['Gratitude', 'امتنان'], ['Contentment', 'رِضا']] },
       clay:    { en: 'Determined', ar: 'عزيمة',  bg: '#C0643C', ink: '#FBF2E6', acc: '#F6D9BE', glow: '#E08A5E', words: [['Courage', 'شجاعة'], ['Focus', 'تركيز'], ['Strength', 'قوّة']] },
       dusk:    { en: 'Thoughtful', ar: 'تأمّل',  bg: '#2F3A5C', ink: '#EFE6D8', acc: '#C9B48E', glow: '#5D6A86', words: [['Clarity', 'وضوح'], ['Growth', 'نموّ'], ['Wonder', 'دهشة']] },
-      night:   { en: 'Tired',      ar: 'تعب',    bg: '#0F0C09', ink: '#EFE6D8', acc: '#C1A47E', glow: '#3A2E22', words: [['Rest', 'راحة'], ['Gentleness', 'رِفق'], ['Ease', 'يُسر']] }
+      night:   { en: 'Loved',      ar: 'حب',    bg: '#0F0C09', ink: '#EFE6D8', acc: '#C1A47E', glow: '#3A2E22', words: [['Love', 'حُبّ'], ['Tenderness', 'حنان'], ['Warmth', 'دفء']] }
     };
     let mood = 'gallery', idx = 0;
     const fit = (txt, font, max, start) => { let s = start; do { ctx.font = font.replace('$', s); s -= 4; } while (ctx.measureText(txt).width > max && s > 40); return s + 4; };
