@@ -92,6 +92,56 @@
       const l = document.createElement('a'); l.download = 'a-word-for-today-' + moods[mood].words[idx % 3][0].toLowerCase() + '.png';
       l.href = cv.toDataURL('image/png'); l.click();
     });
+    // ---- Share: native share sheet (with the poster) or a menu of places ----
+    const shareBtn = document.getElementById('stShare'), menu = document.getElementById('stMenu'), toast = document.getElementById('stToast');
+    const pageUrl = 'https://aishahmed.com/#studio';
+    const say = t => { toast.textContent = t; clearTimeout(say.t); say.t = setTimeout(() => toast.textContent = '', 4000); };
+    const current = () => { const m = moods[mood], w = m.words[idx % m.words.length]; return { en: w[0], ar: w[1], file: 'a-word-for-today-' + w[0].toLowerCase() + '.png' }; };
+    const shareText = () => { const c = current(); return `My word for today: ${c.en} · ${c.ar}. Find yours at`; };
+    const blob = () => new Promise(r => cv.toBlob(r, 'image/png'));
+    const download = () => { const l = document.createElement('a'); l.download = current().file; l.href = cv.toDataURL('image/png'); l.click(); };
+    const setLinks = () => {
+      const txt = encodeURIComponent(shareText()), both = encodeURIComponent(shareText() + ' ' + pageUrl), u = encodeURIComponent(pageUrl);
+      const links = {
+        whatsapp: `https://wa.me/?text=${both}`, x: `https://twitter.com/intent/tweet?text=${txt}&url=${u}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${u}`, linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${u}`,
+        telegram: `https://t.me/share/url?url=${u}&text=${txt}`, email: `mailto:?subject=${encodeURIComponent('A word for today')}&body=${both}`
+      };
+      menu.querySelectorAll('a[data-s]').forEach(a => a.href = links[a.dataset.s]);
+    };
+    const openMenu = open => { if (open) setLinks(); menu.hidden = !open; shareBtn.setAttribute('aria-expanded', open); };
+    shareBtn.addEventListener('click', async e => {
+      e.stopPropagation();
+      if (navigator.share && navigator.canShare) {
+        try {
+          const f = new File([await blob()], current().file, { type: 'image/png' });
+          const data = { files: [f], title: 'A word for today', text: shareText() + ' ' + pageUrl };
+          if (navigator.canShare(data)) { await navigator.share(data); return; }
+        } catch (err) { if (err && err.name === 'AbortError') return; }
+      }
+      openMenu(menu.hidden);
+    });
+    menu.querySelectorAll('[data-s]').forEach(el => {
+      const t = encodeURIComponent(shareText()), u = encodeURIComponent(pageUrl);
+      el.addEventListener('click', async e => {
+        const s = el.dataset.s, txt = encodeURIComponent(shareText()), both = encodeURIComponent(shareText() + ' ' + pageUrl);
+        const links = {
+          whatsapp: `https://wa.me/?text=${both}`,
+          x: `https://twitter.com/intent/tweet?text=${txt}&url=${u}`,
+          facebook: `https://www.facebook.com/sharer/sharer.php?u=${u}`,
+          linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${u}`,
+          telegram: `https://t.me/share/url?url=${u}&text=${txt}`,
+          email: `mailto:?subject=${encodeURIComponent('A word for today')}&body=${both}`
+        };
+        if (links[s]) { el.href = links[s]; download(); say('Poster saved too, so you can attach it.'); }
+        else if (s === 'copy') { e.preventDefault(); try { await navigator.clipboard.writeText(shareText() + ' ' + pageUrl); say('Link copied.'); } catch (_) { say(pageUrl); } }
+        else if (s === 'instagram') { e.preventDefault(); download(); say('Poster saved. Open Instagram and add it to your story or a post.'); }
+        openMenu(false);
+      });
+    });
+    document.addEventListener('click', e => { if (!menu.hidden && !menu.contains(e.target)) openMenu(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') openMenu(false); });
+
     (document.fonts ? Promise.all(['italic 400 80px "Instrument Serif"', '700 80px Amiri', '500 22px Inter'].map(f => document.fonts.load(f))) : Promise.resolve()).then(draw, draw);
     draw();
   }

@@ -226,6 +226,17 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(52px,8vw,128px);line
   .pf,.st-frame{outline-width:6px}
   .studio{grid-template-columns:1fr;padding:12vh 22px}
   .st-moods{grid-template-columns:1fr 1fr}
+  .st-menu{left:auto;right:0}
   .st-frame{order:2}
   .sworks{padding-left:22px;padding-right:22px}
 }
+
+/* studio share */
+.st-share{position:relative}
+.st-share-btn{background:var(--bronze);color:var(--paper);border:0;cursor:pointer;font-family:var(--sans)}
+.st-menu{position:absolute;left:0;bottom:calc(100% + 10px);z-index:30;min-width:300px;display:grid;grid-template-columns:1fr 1fr;padding:8px;border-radius:18px;background:var(--paper);border:1px solid var(--line);box-shadow:0 30px 60px -24px rgba(15,12,9,.45)}
+.st-menu[hidden]{display:none}
+.st-menu a,.st-menu button{display:block;text-align:left;font:500 15px var(--sans);color:var(--ink);background:none;border:0;padding:10px 14px;border-radius:10px;cursor:pointer}
+.st-menu a:hover,.st-menu button:hover{background:var(--wall)}
+
+.st-toast{min-height:22px;margin-top:12px;font-size:14px;color:var(--bronze)}

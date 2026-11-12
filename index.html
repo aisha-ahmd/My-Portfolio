@@ -179,7 +179,21 @@
       <div class="st-actions">
         <button class="pill ghost-ink" id="stNext">Another word ↻</button>
         <button class="pill st-save" id="stSave">Download poster ↓</button>
+        <div class="st-share">
+          <button class="pill st-share-btn" id="stShare" aria-haspopup="true" aria-expanded="false">Share ↗</button>
+          <div class="st-menu" id="stMenu" role="menu" hidden>
+            <a role="menuitem" data-s="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+            <a role="menuitem" data-s="x" target="_blank" rel="noopener">X</a>
+            <a role="menuitem" data-s="facebook" target="_blank" rel="noopener">Facebook</a>
+            <a role="menuitem" data-s="linkedin" target="_blank" rel="noopener">LinkedIn</a>
+            <a role="menuitem" data-s="telegram" target="_blank" rel="noopener">Telegram</a>
+            <a role="menuitem" data-s="email">Email</a>
+            <button role="menuitem" data-s="copy">Copy link</button>
+            <button role="menuitem" data-s="instagram">Instagram</button>
+          </div>
+        </div>
       </div>
+      <p class="st-toast" id="stToast" role="status" aria-live="polite"></p>
     </div>
     <div class="st-frame"><canvas id="stCanvas" width="1080" height="1350" aria-label="Your word for today, as a poster"></canvas></div>
   </section>
