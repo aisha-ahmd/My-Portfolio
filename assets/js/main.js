@@ -94,17 +94,17 @@
     });
     // ---- Share: native share sheet (with the poster) or a menu of places ----
     const shareBtn = document.getElementById('stShare'), menu = document.getElementById('stMenu'), toast = document.getElementById('stToast');
-    const pageUrl = 'https://aishahmed.com/#studio';
+    const wordUrl = () => 'https://aishahmed.com/word/' + current().en.toLowerCase() + '/';
     const say = t => { toast.textContent = t; clearTimeout(say.t); say.t = setTimeout(() => toast.textContent = '', 4000); };
     const current = () => { const m = moods[mood], w = m.words[idx % m.words.length]; return { en: w[0], ar: w[1], file: 'a-word-for-today-' + w[0].toLowerCase() + '.png' }; };
-    const shareText = () => { const c = current(); return `My word for today: ${c.en} · ${c.ar}. Find yours at`; };
+    const shareText = () => { const c = current(); return `My word for today: ${c.en} · ${c.ar}. Find yours:`; };
     const blob = () => new Promise(r => cv.toBlob(r, 'image/png'));
     const download = () => { const l = document.createElement('a'); l.download = current().file; l.href = cv.toDataURL('image/png'); l.click(); };
     const setLinks = () => {
-      const txt = encodeURIComponent(shareText()), both = encodeURIComponent(shareText() + ' ' + pageUrl), u = encodeURIComponent(pageUrl);
+      const txt = encodeURIComponent(shareText()), both = encodeURIComponent(shareText() + '\n' + wordUrl()), u = encodeURIComponent(wordUrl());
       const links = {
         whatsapp: `https://wa.me/?text=${both}`, x: `https://twitter.com/intent/tweet?text=${txt}&url=${u}`,
-        facebook: `https://www.facebook.com/sharer/sharer.php?u=${u}`, linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${u}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${u}`, linkedin: `https://www.linkedin.com/feed/?shareActive=true&text=${both}`,
         telegram: `https://t.me/share/url?url=${u}&text=${txt}`, email: `mailto:?subject=${encodeURIComponent('A word for today')}&body=${both}`
       };
       menu.querySelectorAll('a[data-s]').forEach(a => a.href = links[a.dataset.s]);
@@ -117,7 +117,7 @@
     if (navigator.share) nativeBtn.hidden = false;
     nativeBtn.addEventListener('click', e => {
       e.preventDefault(); openMenu(false);
-      const data = { title: 'A word for today', text: shareText() + ' ' + pageUrl };
+      const data = { title: 'A word for today', text: shareText(), url: wordUrl() };
       if (readyFile && navigator.canShare && navigator.canShare({ files: [readyFile] })) data.files = [readyFile];
       navigator.share(data).catch(err => { if (!err || err.name !== 'AbortError') { download(); say('Poster saved. Pick an app from the list to share it.'); openMenu(true); } });
     });
@@ -126,20 +126,12 @@
     const _draw = draw; draw = (...a) => { _draw(...a); prepFile(); };
 
     menu.querySelectorAll('[data-s]').forEach(el => {
-      const t = encodeURIComponent(shareText()), u = encodeURIComponent(pageUrl);
       if (el.dataset.s === 'native') return;
       el.addEventListener('click', async e => {
-        const s = el.dataset.s, txt = encodeURIComponent(shareText()), both = encodeURIComponent(shareText() + ' ' + pageUrl);
-        const links = {
-          whatsapp: `https://wa.me/?text=${both}`,
-          x: `https://twitter.com/intent/tweet?text=${txt}&url=${u}`,
-          facebook: `https://www.facebook.com/sharer/sharer.php?u=${u}`,
-          linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${u}`,
-          telegram: `https://t.me/share/url?url=${u}&text=${txt}`,
-          email: `mailto:?subject=${encodeURIComponent('A word for today')}&body=${both}`
-        };
-        if (links[s]) { el.href = links[s]; download(); say('Poster saved too, so you can attach it.'); }
-        else if (s === 'copy') { e.preventDefault(); try { await navigator.clipboard.writeText(shareText() + ' ' + pageUrl); say('Link copied.'); } catch (_) { say(pageUrl); } }
+        const s = el.dataset.s;
+        setLinks(); const links = { whatsapp: 1, x: 1, facebook: 1, linkedin: 1, telegram: 1, email: 1 };
+        if (links[s]) { if (s !== 'linkedin' && s !== 'facebook') { download(); say('Poster saved too, so you can attach it.'); } }
+        else if (s === 'copy') { e.preventDefault(); try { await navigator.clipboard.writeText(shareText() + '\n' + wordUrl()); say('Link copied.'); } catch (_) { say(wordUrl()); } }
         else if (s === 'instagram') { e.preventDefault(); download(); say('Poster saved. Open Instagram and add it to your story or a post.'); }
         openMenu(false);
       });
