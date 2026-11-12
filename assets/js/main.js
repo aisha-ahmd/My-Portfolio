@@ -240,6 +240,14 @@
     });
   }
 
+  // ---- Archive: stats count up, heading rises ----
+  gsap.from('.ar-head > *', { y: 50, opacity: 0, stagger: .1, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: '.archive', start: 'top 70%' } });
+  document.querySelectorAll('.ar-stats b[data-count]').forEach(b => {
+    const n = +b.dataset.count, o = { v: 0 };
+    gsap.to(o, { v: n, duration: 1.8, ease: 'power2.out', scrollTrigger: { trigger: b, start: 'top 85%', once: true }, onUpdate: () => b.textContent = Math.round(o.v) });
+  });
+  gsap.from('.ar-wall', { x: 200, opacity: 0, duration: 1.4, ease: 'power3.out', scrollTrigger: { trigger: '.ar-wall', start: 'top 85%' } });
+
   // ---- Collection, works, contact reveals ----
   gsap.utils.toArray('.collection h2, .study div, .piece, .st-copy, .st-frame').forEach(el => {
     gsap.from(el, { y: 60, opacity: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
