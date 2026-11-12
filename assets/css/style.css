@@ -50,15 +50,16 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(52px,8vw,128px);line
 
 /* hero */
 .hero{height:320vh}
-.hero-pin{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center}
+.hero-pin{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;grid-template-columns:1fr auto;align-items:center;gap:4vw;padding:0 8vw 0 7vw}
 .frame{position:relative;height:78vh;aspect-ratio:1086/1448;z-index:2;will-change:transform;
-  transform-origin:44% 61%;box-shadow:0 40px 80px -30px rgba(15,12,9,.45);outline:10px solid var(--ink);outline-offset:0}
+  transform-origin:60% 50%;box-shadow:0 40px 80px -30px rgba(15,12,9,.45);outline:10px solid var(--ink);outline-offset:0}
 .frame img{width:100%;height:100%;object-fit:cover}
-.hero-title{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 3vw;z-index:3;pointer-events:none;
-  font-family:var(--serif);font-weight:400;font-size:clamp(90px,19vw,320px);line-height:.85;letter-spacing:-.03em;color:var(--ink)}
+.hero-title{position:relative;z-index:3;pointer-events:none;display:flex;flex-direction:column;
+  font-family:var(--serif);font-weight:400;font-size:clamp(56px,6.6vw,118px);line-height:.92;letter-spacing:-.03em;color:var(--ink)}
 .ht{display:block;will-change:transform}
+.ht-r{padding-left:.9em}
 .ht-r em{color:var(--bronze)}
-.hero-label{position:absolute;right:6vw;bottom:9vh;z-index:4}
+.hero-label{position:absolute;left:7vw;bottom:10vh;z-index:4}
 .hero-scroll{position:absolute;left:28px;bottom:24px;z-index:4;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--umber);display:flex;align-items:center;gap:12px}
 .hero-scroll span{width:46px;height:1px;background:currentColor;transform-origin:left;animation:line 2s ease-in-out infinite}
 @keyframes line{0%{transform:scaleX(0)}50%{transform:scaleX(1)}100%{transform:scaleX(0);transform-origin:right}}
@@ -155,9 +156,10 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(52px,8vw,128px);line
   .links{display:none}
   .nav{padding:16px 18px}
   .hero{height:240vh}
-  .hero-pin{place-items:end center;padding-bottom:9vh}
-  .hero-title{inset:auto 0 auto 0;top:11vh;height:auto;justify-content:center;gap:.22em;font-size:clamp(72px,22vw,140px)}
-  .frame{height:58vh;outline-width:6px}
+  .hero-pin{grid-template-columns:1fr;place-items:end center;padding:0 0 9vh;gap:0}
+  .hero-title{position:absolute;left:0;right:0;top:10vh;align-items:center;font-size:clamp(48px,14.5vw,96px);line-height:.95}
+  .ht-r{padding-left:0}
+  .frame{height:54vh;outline-width:6px}
   .hero-scroll{display:none}
   .hero-label{right:14px;bottom:4vh}
   .manifesto,.bilingual,.collection,.works{padding-left:22px;padding-right:22px}

@@ -92,9 +92,9 @@
   const mm = gsap.matchMedia();
   mm.add('(min-width: 861px)', () => {
     gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom bottom', scrub: 1 } })
-      .fromTo('.frame', { scale: 1 }, { scale: .62, ease: 'none' }, 0)
-      .to('.ht-l', { xPercent: -18, ease: 'none' }, 0)
-      .to('.ht-r', { xPercent: 18, ease: 'none' }, 0)
+      .fromTo('.frame', { scale: 1 }, { scale: .72, ease: 'none' }, 0)
+      .to('.ht-l', { xPercent: -8, ease: 'none' }, 0)
+      .to('.ht-r', { xPercent: 10, ease: 'none' }, 0)
       .to('.hero-label', { y: -60, ease: 'none' }, 0)
       .to('.hero-scroll', { opacity: 0, ease: 'none' }, 0);
   });
