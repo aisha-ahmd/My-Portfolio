@@ -243,3 +243,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(52px,8vw,128px);line
 .st-menu .st-native[hidden]{display:none}
 
 .st-toast{min-height:22px;margin-top:12px;font-size:14px;color:var(--bronze)}
+
+.certs-link{display:inline-flex;gap:10px;align-items:baseline;margin-top:5vh;font-family:var(--serif);font-style:italic;font-size:clamp(28px,3vw,42px);border-bottom:1.5px solid var(--sand);transition:gap .3s}
+.certs-link:hover{gap:20px}
+.certs-link span{color:var(--bronze)}
