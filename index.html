@@ -10,91 +10,166 @@
 <meta property="og:image" content="https://aishahmed.com/assets/img/og.jpg">
 <meta property="og:url" content="https://aishahmed.com/">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F0C09">
 <link rel="icon" href="assets/img/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Amiri&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=Amiri:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="is-loading">
+
+<!-- Intro: a sun rises, then the gallery opens -->
+<div class="intro" aria-hidden="true">
+  <div class="intro-sun"></div>
+  <p class="intro-word"><span>Aisha</span> <em>Ahmed</em></p>
+  <p class="intro-count"><span id="count">0</span>%</p>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="light" aria-hidden="true"></div>
+
 <header class="nav">
-  <a class="logo" href="#top">Aisha Ahmed</a>
-  <nav>
-    <a href="#about">About</a><a href="#services">What I do</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a class="btn-sm" href="#contact">Contact</a>
+  <a class="mark" href="#top" aria-label="Aisha Ahmed, home"><span class="dot"></span>Aisha Ahmed</a>
+  <nav class="links">
+    <a href="#manifesto">About</a><a href="#exhibits">Work</a><a href="#collection">Experience</a>
   </nav>
+  <a class="pill" href="#contact">Let's talk</a>
 </header>
 
 <main id="top">
-  <section class="hero">
-    <div class="hero-text">
-      <p class="eyebrow"><i></i>Brand Content · Digital Products · AI</p>
-      <h1>Brand content &amp; digital products, in <em>Arabic</em> &amp; <em>English</em>.</h1>
-      <p class="lead">I design and write content that is beautiful, honest and useful, and I know what makes a product sell, on the shelf and on the screen.</p>
-      <div class="cta">
-        <a class="btn" href="https://www.linkedin.com/in/aishahemd/" target="_blank" rel="noopener">View my LinkedIn</a>
-        <a class="btn ghost" href="#contact">Work with me</a>
+
+  <!-- 1 · HERO: zoom out from the Be Kind patch to the full portrait -->
+  <section class="hero" id="hero">
+    <div class="hero-pin">
+      <h1 class="hero-title" aria-label="Be kind. Aisha Ahmed, brand content and digital products in Arabic and English.">
+        <span class="ht ht-l" aria-hidden="true">Be</span>
+        <span class="ht ht-r" aria-hidden="true"><em>kind.</em></span>
+      </h1>
+      <figure class="frame">
+        <img src="assets/img/hero.jpg" alt="Aisha in a black abaya in a sunlit gallery, a Be Kind patch on her sleeve" width="1086" height="1448">
+      </figure>
+      <div class="hero-label label">
+        <p class="label-t">Aisha Ahmed</p>
+        <p class="label-s">Brand content &amp; digital products</p>
+        <p class="label-m">Arabic &amp; English · UAE · Remote</p>
       </div>
-      <ul class="proof">
-        <li><b>Danone</b> brand execution across 25 stores every week</li>
-        <li><b>Unilever</b> B2B customer development</li>
-        <li><b>42 Abu Dhabi</b> software development diploma</li>
-      </ul>
-    </div>
-    <figure class="hero-img"><img src="assets/img/hero.jpg" alt="Aisha in a black abaya in a sunlit gallery, a Be Kind patch on her sleeve"></figure>
-  </section>
-
-  <section id="about" class="about">
-    <p class="quote">I believe every interaction is a chance to leave someone better off.</p>
-    <div class="about-grid">
-      <p>I sit where three worlds meet: <b>retail</b>, <b>design</b> and <b>technology</b>. In the field I see how real customers choose between brands on a crowded shelf. At my desk I turn that into content, in Arabic and English, that feels natural in both languages.</p>
-      <p>My software training at 42 Abu Dhabi means I am comfortable with digital tools, AI workflows and building things for the web, including this site. I work independently and remotely with ease, and I care about doing honest work that helps people.</p>
+      <p class="hero-scroll"><span></span>Scroll to enter the gallery</p>
     </div>
   </section>
 
-  <section id="services">
-    <h2 class="h2"><span>01</span>What I do</h2>
-    <div class="cards">
-      <article class="card"><h3>Brand content</h3><p>Social media carousels, campaign visuals, product creatives and presentations that look premium and stay on brand.</p><p class="tags">Figma · Photoshop · Illustrator</p></article>
-      <article class="card"><h3>Bilingual copywriting</h3><p>Captions, product copy and campaign messages written natively in Arabic and English, not translated.</p><p class="tags">Arabic · English</p></article>
-      <article class="card"><h3>Digital products &amp; AI</h3><p>Planners, guides and templates, produced with AI-assisted workflows for speed and with human care for quality.</p><p class="tags">Design systems · AI tools</p></article>
-      <article class="card"><h3>E-commerce &amp; retail insight</h3><p>Shelf, pricing and promotion know-how from FMCG, applied to product pages, offers and launches online.</p><p class="tags">FMCG · Trade marketing</p></article>
+  <!-- 2 · MANIFESTO: words light up as you scroll -->
+  <section class="manifesto" id="manifesto">
+    <p class="kicker">( Room 01 · The belief )</p>
+    <p class="big reveal-words">I believe every interaction is a chance to leave someone <em>better off.</em></p>
+    <div class="manifesto-cols">
+      <p>I sit where three worlds meet: <b>retail</b>, <b>design</b> and <b>technology</b>. In the field I see how real customers choose between brands on a crowded shelf. At my desk I turn that into content that feels natural in both Arabic and English.</p>
+      <p>My software training at 42 Abu Dhabi keeps me fluent in digital tools, AI workflows and building for the web, including this site. I work independently, remotely, and with care.</p>
     </div>
   </section>
 
-  <section id="experience">
-    <h2 class="h2"><span>02</span>Experience</h2>
-    <ol class="timeline">
-      <li><time>Sep 2025 · Present</time><h3>Marketing Manager · Danone</h3><p>Brand visibility and in-store execution: I visit 25 different stores every week to check shelf share, planograms, pricing, promotions and availability, and I secured visibility for Danone brands in stores where competitors were present and Danone was not.</p></li>
-      <li><time>Oct 2024 · May 2025</time><h3>Entrepreneurship &amp; Design Fellow · Sandooq Al Watan</h3><p>Maharah Freelancing Program: client-style branding and design projects delivered remotely, from brief and proposal to hand-off.</p></li>
-      <li><time>Jan 2024 · Aug 2025</time><h3>Independent Brand Designer · Self-employed</h3><p>Brand identity, social media and marketing design practice, plus designing and building my portfolio website.</p></li>
-      <li><time>Jun 2023 · Jan 2024</time><h3>B2B Customer Development Specialist · Unilever</h3><p>Managed B2B trade customers, ran tailored sales and marketing initiatives and shared market insight with cross-functional teams.</p></li>
-      <li><time>Apr · Jun 2023</time><h3>Sales Associate · adidas</h3><p>Customer service, visual merchandising and stock control in a high-traffic flagship store.</p></li>
+  <!-- 3 · BILINGUAL: drag the light to switch language -->
+  <section class="bilingual" id="bilingual">
+    <p class="kicker">( Room 02 · Two languages, one voice )</p>
+    <div class="bi-stage" id="biStage">
+      <div class="bi-panel bi-en"><span class="bi-tag">English</span><p>Content that feels <em>written</em> for you, not translated for you.</p></div>
+      <div class="bi-panel bi-ar" lang="ar" dir="rtl"><span class="bi-tag">العربية</span><p>محتوى يشعر أنه <em>كُتِب</em> لك، لا تُرجِم لك.</p></div>
+    </div>
+    <p class="hint">Hover a language to step into it</p>
+  </section>
+
+  <!-- 4 · EXHIBITS: horizontal gallery of services -->
+  <section class="exhibits" id="exhibits">
+    <div class="ex-pin">
+      <div class="ex-head">
+        <p class="kicker">( Room 03 · What I do )</p>
+        <h2>Four <em>exhibits.</em></h2>
+      </div>
+      <div class="ex-track">
+        <article class="exhibit">
+          <span class="ex-no">I.</span>
+          <h3>Brand <em>content</em></h3>
+          <p>Social carousels, campaign visuals, product creatives and presentations that look premium and stay on brand.</p>
+          <div class="label"><p class="label-t">Brand content</p><p class="label-m">Medium: Figma, Photoshop, Illustrator</p></div>
+        </article>
+        <article class="exhibit">
+          <span class="ex-no">II.</span>
+          <h3>Bilingual <em>copy</em></h3>
+          <p>Captions, product copy and campaign messages written natively in Arabic and English.</p>
+          <div class="label"><p class="label-t">Bilingual copywriting</p><p class="label-m">Medium: Arabic, English</p></div>
+        </article>
+        <article class="exhibit">
+          <span class="ex-no">III.</span>
+          <h3>Digital <em>products</em></h3>
+          <p>Planners, guides and templates, made with AI-assisted workflows for speed and human care for quality.</p>
+          <div class="label"><p class="label-t">Digital products &amp; AI</p><p class="label-m">Medium: design systems, AI tools</p></div>
+        </article>
+        <article class="exhibit">
+          <span class="ex-no">IV.</span>
+          <h3>Shelf to <em>screen</em></h3>
+          <p>Shelf, pricing and promotion know-how from FMCG, applied to product pages, offers and launches online.</p>
+          <div class="label"><p class="label-t">E-commerce &amp; retail insight</p><p class="label-m">Medium: FMCG, trade marketing</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · COLLECTION: experience as a wall of labels -->
+  <section class="collection" id="collection">
+    <p class="kicker">( Room 04 · The collection )</p>
+    <h2>Where the work <em>was made.</em></h2>
+    <ol class="rows">
+      <li class="row"><span class="yr">2025 · now</span><span class="role">Marketing Manager</span><span class="org">Danone</span>
+        <p class="more">Brand visibility and in-store execution. I visit 25 different stores every week to check shelf share, planograms, pricing, promotions and availability, and I secured visibility for Danone brands in stores where competitors were present and Danone was not.</p></li>
+      <li class="row"><span class="yr">2024 · 2025</span><span class="role">Entrepreneurship &amp; Design Fellow</span><span class="org">Sandooq Al Watan</span>
+        <p class="more">Maharah Freelancing Program: client-style branding and design projects delivered remotely, from brief and proposal to final hand-off.</p></li>
+      <li class="row"><span class="yr">2024 · 2025</span><span class="role">Independent Brand Designer</span><span class="org">Self-employed</span>
+        <p class="more">Brand identity, social media and marketing design practice, plus designing and building my portfolio website.</p></li>
+      <li class="row"><span class="yr">2023 · 2024</span><span class="role">B2B Customer Development Specialist</span><span class="org">Unilever</span>
+        <p class="more">Managed B2B trade customers, ran tailored sales and marketing initiatives, and shared market insight with cross-functional teams.</p></li>
+      <li class="row"><span class="yr">2023</span><span class="role">Sales Associate</span><span class="org">adidas</span>
+        <p class="more">Customer service, visual merchandising and stock control in a high-traffic flagship store.</p></li>
     </ol>
-    <div class="edu">
-      <div><h3>Software Development Diploma</h3><p>42 Abu Dhabi · 2021 to 2023</p></div>
-      <div><h3>Bachelor's, Entrepreneurship &amp; Business Administration</h3><p>United Arab Emirates University · 2017 to 2021</p></div>
-      <div><h3>Six Sigma Green Belt</h3><p>CSSGB · 6sigmastudy</p></div>
+    <div class="study">
+      <div><p class="label-t">Software Development Diploma</p><p class="label-m">42 Abu Dhabi · 2021 to 2023</p></div>
+      <div><p class="label-t">Bachelor's, Entrepreneurship &amp; Business Administration</p><p class="label-m">UAE University · 2017 to 2021</p></div>
+      <div><p class="label-t">Six Sigma Green Belt</p><p class="label-m">CSSGB · 6sigmastudy</p></div>
     </div>
   </section>
 
-  <section id="projects">
-    <h2 class="h2"><span>03</span>Projects</h2>
-    <div class="cards two">
-      <article class="card project"><p class="kicker">Website</p><h3>aishahmed.com</h3><p>This portfolio: a lightweight, responsive site in plain HTML and CSS, hosted on GitHub Pages with a custom domain.</p><a href="https://github.com/aisha-ahmd/My-Portfolio" target="_blank" rel="noopener">View the code →</a></article>
-      <article class="card project soon"><p class="kicker">Coming soon</p><h3>New builds</h3><p>Websites, small apps and digital products are being built and will appear here as they ship.</p><a href="https://github.com/aisha-ahmd" target="_blank" rel="noopener">Follow on GitHub →</a></article>
+  <!-- 6 · NEW WORKS -->
+  <section class="works" id="works">
+    <p class="kicker">( Room 05 · New works )</p>
+    <div class="works-grid">
+      <a class="work" href="https://github.com/aisha-ahmd/My-Portfolio" target="_blank" rel="noopener">
+        <span class="w-k">Website · 2026</span><h3>aishahmed<em>.com</em></h3><p>This gallery. Hand-built in HTML, CSS and JavaScript, hosted on GitHub Pages.</p><span class="w-a">View the code ↗</span>
+      </a>
+      <a class="work soon" href="https://github.com/aisha-ahmd" target="_blank" rel="noopener">
+        <span class="w-k">In progress</span><h3>Being <em>installed.</em></h3><p>Websites, small apps and digital products, added here as they ship.</p><span class="w-a">Follow on GitHub ↗</span>
+      </a>
     </div>
   </section>
 
-  <section id="contact" class="contact">
-    <p class="ayah" lang="ar" dir="rtl">وَأَن لَّيْسَ لِلْإِنسَانِ إِلَّا مَا سَعَىٰ</p>
-    <h2>Let's build something good.</h2>
-    <p>Open to remote roles worldwide and on-site in the UAE, in brand content and e-commerce marketing.</p>
-    <div class="cta center">
-      <a class="btn" href="https://www.linkedin.com/in/aishahemd/" target="_blank" rel="noopener">Message me on LinkedIn</a>
-      <a class="btn ghost" href="https://github.com/aisha-ahmd" target="_blank" rel="noopener">GitHub</a>
+  <!-- 7 · CONTACT -->
+  <section class="contact" id="contact">
+    <img class="contact-img" src="assets/img/gallery2.jpg" alt="" aria-hidden="true" loading="lazy">
+    <div class="contact-in">
+      <p class="ayah" lang="ar" dir="rtl">وَأَن لَّيْسَ لِلْإِنسَانِ إِلَّا مَا سَعَىٰ</p>
+      <h2>Let's make something <em>good.</em></h2>
+      <p class="contact-s">Open to remote roles worldwide and on-site in the UAE, in brand content and e-commerce marketing.</p>
+      <div class="contact-cta">
+        <a class="pill big" href="https://www.linkedin.com/in/aishahemd/" target="_blank" rel="noopener">Message me on LinkedIn ↗</a>
+        <a class="pill ghost big" href="https://github.com/aisha-ahmd" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
     </div>
+    <footer><span>© <span id="y">2026</span> Aisha Ahmed</span><span>Exhibition open daily · aishahmed.com</span></footer>
   </section>
 </main>
-<footer>© <span id="y">2026</span> Aisha Ahmed · Hosted on GitHub Pages</footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+
+<div class="cursor" aria-hidden="true"></div>
+
+<script src="assets/js/vendor/gsap.min.js"></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/vendor/lenis.min.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
