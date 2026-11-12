@@ -2,7 +2,9 @@
 
 Source of my portfolio website: **brand content & digital products, in Arabic & English**.
 
-- Concept "The Gallery": the site is an exhibition in five rooms (belief, two languages, exhibits, collection, new works)
+- Concept "The Gallery": the site is an exhibition in six rooms (belief, two languages, selected works, disciplines, collection, studio)
+- Case studies in `/work`: Qahwa House (brand campaign), Tamra (packaging & e-commerce), Focus Week (bilingual digital product, PDF in `assets/files`)
+- The Studio: a canvas-based bilingual poster maker visitors can download
 - HTML, CSS and JavaScript with GSAP ScrollTrigger + Lenis smooth scroll (vendored in `assets/js/vendor`), respects reduced-motion
 - Hosted on GitHub Pages with the custom domain `aishahmed.com`
 - Palette "Gallery Light": Ink `#0F0C09` · Umber `#4E3F32` · Bronze `#967C5D` · Sand `#C1A47E` · Wall `#EFE6D8`
