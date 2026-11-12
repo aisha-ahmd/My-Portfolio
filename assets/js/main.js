@@ -45,52 +45,54 @@
   }
 
 
-  // ---- Studio: bilingual poster maker ----
+  // ---- Studio: a word for today (curated words only) ----
   const cv = document.getElementById('stCanvas');
   if (cv) {
     const ctx = cv.getContext('2d');
-    const en = document.getElementById('stEn'), ar = document.getElementById('stAr');
     const moods = {
-      gallery: { bg: '#EFE6D8', ink: '#0F0C09', acc: '#967C5D', sun: '#E9B872' },
-      night:   { bg: '#0F0C09', ink: '#EFE6D8', acc: '#C1A47E', sun: '#E9B872' },
-      sun:     { bg: '#E9B872', ink: '#2B1D14', acc: '#7A4A1E', sun: '#FBE3B6' },
-      sage:    { bg: '#6E7B4E', ink: '#F2E8D8', acc: '#E6D6A8', sun: '#D9B86A' }
+      sun:     { en: 'Hopeful',    ar: 'تفاؤل',  bg: '#E9B872', ink: '#2B1D14', acc: '#7A4A1E', glow: '#FBE3B6', words: [['Hope', 'أمل'], ['Light', 'نور'], ['Joy', 'بهجة']] },
+      sage:    { en: 'Calm',       ar: 'هدوء',   bg: '#6E7B4E', ink: '#F2E8D8', acc: '#E6D6A8', glow: '#9AA77A', words: [['Peace', 'سلام'], ['Stillness', 'سكينة'], ['Patience', 'صبر']] },
+      gallery: { en: 'Grateful',   ar: 'امتنان', bg: '#EFE6D8', ink: '#0F0C09', acc: '#967C5D', glow: '#E9B872', words: [['Gratitude', 'امتنان'], ['Kindness', 'لُطف'], ['Contentment', 'رِضا']] },
+      clay:    { en: 'Determined', ar: 'عزيمة',  bg: '#C0643C', ink: '#FBF2E6', acc: '#F6D9BE', glow: '#E08A5E', words: [['Courage', 'شجاعة'], ['Focus', 'تركيز'], ['Strength', 'قوّة']] },
+      dusk:    { en: 'Thoughtful', ar: 'تأمّل',  bg: '#2F3A5C', ink: '#EFE6D8', acc: '#C9B48E', glow: '#5D6A86', words: [['Clarity', 'وضوح'], ['Growth', 'نموّ'], ['Wonder', 'دهشة']] },
+      night:   { en: 'Tired',      ar: 'تعب',    bg: '#0F0C09', ink: '#EFE6D8', acc: '#C1A47E', glow: '#3A2E22', words: [['Rest', 'راحة'], ['Gentleness', 'رِفق'], ['Ease', 'يُسر']] }
     };
-    let mood = 'gallery';
+    let mood = 'sun', idx = 0;
     const fit = (txt, font, max, start) => { let s = start; do { ctx.font = font.replace('$', s); s -= 4; } while (ctx.measureText(txt).width > max && s > 40); return s + 4; };
     const draw = () => {
-      const m = moods[mood], W = 1080, H = 1350;
+      const m = moods[mood], [we, wa] = m.words[idx % m.words.length], W = 1080, H = 1350;
       ctx.fillStyle = m.bg; ctx.fillRect(0, 0, W, H);
       const g = ctx.createRadialGradient(760, 430, 10, 760, 430, 330);
-      g.addColorStop(0, m.sun); g.addColorStop(.7, m.sun + 'aa'); g.addColorStop(1, m.sun + '00');
+      g.addColorStop(0, m.glow); g.addColorStop(.7, m.glow + 'aa'); g.addColorStop(1, m.glow + '00');
       ctx.fillStyle = g; ctx.beginPath(); ctx.arc(760, 430, 330, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = m.ink; ctx.globalAlpha = .7;
-      ctx.font = '500 22px Inter'; ctx.textAlign = 'left'; ctx.fillText('A WORD TO LIVE BY', 80, 110);
-      ctx.textAlign = 'right'; ctx.fillText('NO. ' + String((en.value.length * 7 + ar.value.length * 3) % 100).padStart(2, '0'), W - 80, 110);
+      ctx.fillStyle = m.ink; ctx.globalAlpha = .75; ctx.font = '500 22px Inter';
+      ctx.textAlign = 'left'; ctx.fillText('A WORD FOR TODAY', 80, 110);
+      ctx.textAlign = 'right'; ctx.fillText('FEELING ' + m.en.toUpperCase(), W - 80, 110);
       ctx.globalAlpha = 1;
-      const e = (en.value || ' ').trim() + '.';
+      const e = we + '.';
       const s = fit(e, 'italic 400 $px "Instrument Serif"', W - 160, 230);
-      ctx.textAlign = 'left'; ctx.fillStyle = m.ink; ctx.font = `italic 400 ${s}px "Instrument Serif"`;
-      ctx.fillText(e, 80, 900);
-      const a = (ar.value || ' ').trim();
-      const sa = fit(a, '700 $px Amiri', W - 160, 150);
-      ctx.direction = 'rtl'; ctx.textAlign = 'right'; ctx.fillStyle = m.acc; ctx.font = `700 ${sa}px Amiri`;
-      ctx.fillText(a, W - 80, 1090); ctx.direction = 'ltr';
-      ctx.strokeStyle = m.ink; ctx.globalAlpha = .35; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(80, 1200); ctx.lineTo(W - 80, 1200); ctx.stroke(); ctx.globalAlpha = .75;
-      ctx.fillStyle = m.ink; ctx.font = '500 22px Inter'; ctx.textAlign = 'left'; ctx.fillText('MADE IN THE STUDIO OF AISHA AHMED', 80, 1250);
-      ctx.textAlign = 'right'; ctx.fillText('AISHAHMED.COM', W - 80, 1250); ctx.globalAlpha = 1;
+      ctx.textAlign = 'left'; ctx.fillStyle = m.ink; ctx.font = `italic 400 ${s}px "Instrument Serif"`; ctx.fillText(e, 80, 900);
+      const sa = fit(wa, '700 $px Amiri', W - 160, 160);
+      ctx.direction = 'rtl'; ctx.textAlign = 'right'; ctx.fillStyle = m.acc; ctx.font = `700 ${sa}px Amiri`; ctx.fillText(wa, W - 80, 1095); ctx.direction = 'ltr';
+      ctx.strokeStyle = m.ink; ctx.globalAlpha = .35; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(80, 1200); ctx.lineTo(W - 80, 1200); ctx.stroke();
+      ctx.globalAlpha = .8; ctx.fillStyle = m.ink;
+      ctx.font = '500 22px Inter'; ctx.textAlign = 'left'; ctx.fillText(m.en.toUpperCase(), 80, 1252);
+      const ew = ctx.measureText(m.en.toUpperCase() + '  ·  ').width; ctx.fillText('·', 80 + ctx.measureText(m.en.toUpperCase() + '  ').width, 1252);
+      ctx.font = '700 28px Amiri'; ctx.direction = 'rtl'; ctx.textAlign = 'left'; ctx.fillText(m.ar, 80 + ew, 1254); ctx.direction = 'ltr';
+      ctx.font = '500 22px Inter'; ctx.textAlign = 'right'; ctx.fillText('AISHAHMED.COM', W - 80, 1252); ctx.globalAlpha = 1;
     };
-    document.querySelectorAll('.st-moods button').forEach(b => b.addEventListener('click', () => {
-      document.querySelectorAll('.st-moods button').forEach(x => x.classList.remove('on')); b.classList.add('on'); mood = b.dataset.m; draw();
+    const btns = document.querySelectorAll('.st-moods button');
+    btns.forEach(b => b.addEventListener('click', () => {
+      btns.forEach(x => { x.classList.remove('on'); x.setAttribute('aria-checked', 'false'); });
+      b.classList.add('on'); b.setAttribute('aria-checked', 'true');
+      mood = b.dataset.m; idx = Math.floor(Math.random() * moods[mood].words.length); draw();
     }));
-    en.addEventListener('input', draw); ar.addEventListener('input', draw);
+    document.getElementById('stNext').addEventListener('click', () => { idx++; draw(); });
     document.getElementById('stSave').addEventListener('click', () => {
-      const l = document.createElement('a'); l.download = 'poster-' + (en.value || 'word').toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.png';
+      const l = document.createElement('a'); l.download = 'a-word-for-today-' + moods[mood].words[idx % 3][0].toLowerCase() + '.png';
       l.href = cv.toDataURL('image/png'); l.click();
     });
-    (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
-      Promise.all(['italic 400 80px "Instrument Serif"', '700 80px Amiri', '500 22px Inter'].map(f => document.fonts.load(f))).then(draw, draw);
-    });
+    (document.fonts ? Promise.all(['italic 400 80px "Instrument Serif"', '700 80px Amiri', '500 22px Inter'].map(f => document.fonts.load(f))) : Promise.resolve()).then(draw, draw);
     draw();
   }
 

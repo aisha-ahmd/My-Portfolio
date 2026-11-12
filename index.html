@@ -161,25 +161,27 @@
     </div>
   </section>
 
-  <!-- 6 · STUDIO: make a poster -->
+  <!-- 6 · STUDIO: a word for today -->
   <section class="studio" id="studio">
     <div class="st-copy">
       <p class="kicker">( Room 06 · The studio )</p>
-      <h2>Make it <em>yours.</em></h2>
-      <p>Type a word that matters to you, in English and in Arabic, pick a mood, and the studio sets it as a poster in my style. Keep it: it is yours.</p>
-      <div class="st-form">
-        <label>English<input id="stEn" maxlength="18" value="Kindness" autocomplete="off"></label>
-        <label class="ar-in">العربية<input id="stAr" maxlength="18" value="لُطف" dir="rtl" autocomplete="off"></label>
-        <div class="st-moods" role="radiogroup" aria-label="Mood">
-          <button class="on" data-m="gallery" aria-label="Gallery"><i style="background:#EFE6D8"></i>Gallery</button>
-          <button data-m="night" aria-label="Night"><i style="background:#0F0C09"></i>Night</button>
-          <button data-m="sun" aria-label="Sun"><i style="background:#E9B872"></i>Sun</button>
-          <button data-m="sage" aria-label="Sage"><i style="background:#6E7B4E"></i>Sage</button>
-        </div>
+      <h2>How do you feel <em>today?</em></h2>
+      <p class="st-ar" lang="ar" dir="rtl">شعورك اليوم؟</p>
+      <p>Pick the colour of your day. The studio gives you one word to carry with you, in English and in Arabic. Keep the poster: it is yours.</p>
+      <div class="st-moods" role="radiogroup" aria-label="Choose how you feel">
+        <button class="on" role="radio" aria-checked="true" data-m="sun"><i style="background:#E9B872"></i><span>Hopeful<small>تفاؤل</small></span></button>
+        <button role="radio" aria-checked="false" data-m="sage"><i style="background:#6E7B4E"></i><span>Calm<small>هدوء</small></span></button>
+        <button role="radio" aria-checked="false" data-m="gallery"><i style="background:#EFE6D8"></i><span>Grateful<small>امتنان</small></span></button>
+        <button role="radio" aria-checked="false" data-m="clay"><i style="background:#C0643C"></i><span>Determined<small>عزيمة</small></span></button>
+        <button role="radio" aria-checked="false" data-m="dusk"><i style="background:#2F3A5C"></i><span>Thoughtful<small>تأمّل</small></span></button>
+        <button role="radio" aria-checked="false" data-m="night"><i style="background:#0F0C09"></i><span>Tired<small>تعب</small></span></button>
+      </div>
+      <div class="st-actions">
+        <button class="pill ghost-ink" id="stNext">Another word ↻</button>
         <button class="pill st-save" id="stSave">Download poster ↓</button>
       </div>
     </div>
-    <div class="st-frame"><canvas id="stCanvas" width="1080" height="1350" aria-label="Your poster preview"></canvas></div>
+    <div class="st-frame"><canvas id="stCanvas" width="1080" height="1350" aria-label="Your word for today, as a poster"></canvas></div>
   </section>
 
   <!-- 7 · CONTACT -->
