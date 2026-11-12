@@ -59,7 +59,7 @@
     };
     let mood = 'gallery', idx = 0;
     const fit = (txt, font, max, start) => { let s = start; do { ctx.font = font.replace('$', s); s -= 4; } while (ctx.measureText(txt).width > max && s > 40); return s + 4; };
-    const draw = () => {
+    let draw = () => {
       const m = moods[mood], [we, wa] = m.words[idx % m.words.length], W = 1080, H = 1350;
       ctx.fillStyle = m.bg; ctx.fillRect(0, 0, W, H);
       const g = ctx.createRadialGradient(760, 430, 10, 760, 430, 330);
@@ -110,19 +110,24 @@
       menu.querySelectorAll('a[data-s]').forEach(a => a.href = links[a.dataset.s]);
     };
     const openMenu = open => { if (open) setLinks(); menu.hidden = !open; shareBtn.setAttribute('aria-expanded', open); };
-    shareBtn.addEventListener('click', async e => {
-      e.stopPropagation();
-      if (navigator.share && navigator.canShare) {
-        try {
-          const f = new File([await blob()], current().file, { type: 'image/png' });
-          const data = { files: [f], title: 'A word for today', text: shareText() + ' ' + pageUrl };
-          if (navigator.canShare(data)) { await navigator.share(data); return; }
-        } catch (err) { if (err && err.name === 'AbortError') return; }
-      }
-      openMenu(menu.hidden);
+    // keep a ready-made file so the share sheet opens instantly (no waiting inside the tap)
+    let readyFile = null;
+    const prepFile = () => cv.toBlob(b => { if (b) readyFile = new File([b], current().file, { type: 'image/png' }); }, 'image/png');
+    const nativeBtn = menu.querySelector('[data-s="native"]');
+    if (navigator.share) nativeBtn.hidden = false;
+    nativeBtn.addEventListener('click', e => {
+      e.preventDefault(); openMenu(false);
+      const data = { title: 'A word for today', text: shareText() + ' ' + pageUrl };
+      if (readyFile && navigator.canShare && navigator.canShare({ files: [readyFile] })) data.files = [readyFile];
+      navigator.share(data).catch(err => { if (!err || err.name !== 'AbortError') { download(); say('Poster saved. Pick an app from the list to share it.'); openMenu(true); } });
     });
+    shareBtn.addEventListener('click', e => { e.stopPropagation(); prepFile(); openMenu(menu.hidden); });
+    prepFile();
+    const _draw = draw; draw = (...a) => { _draw(...a); prepFile(); };
+
     menu.querySelectorAll('[data-s]').forEach(el => {
       const t = encodeURIComponent(shareText()), u = encodeURIComponent(pageUrl);
+      if (el.dataset.s === 'native') return;
       el.addEventListener('click', async e => {
         const s = el.dataset.s, txt = encodeURIComponent(shareText()), both = encodeURIComponent(shareText() + ' ' + pageUrl);
         const links = {

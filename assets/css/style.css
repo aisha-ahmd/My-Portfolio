@@ -238,5 +238,8 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(52px,8vw,128px);line
 .st-menu[hidden]{display:none}
 .st-menu a,.st-menu button{display:block;text-align:left;font:500 15px var(--sans);color:var(--ink);background:none;border:0;padding:10px 14px;border-radius:10px;cursor:pointer}
 .st-menu a:hover,.st-menu button:hover{background:var(--wall)}
+.st-menu .st-native{grid-column:1/-1;background:var(--ink);color:var(--paper);text-align:center;margin-bottom:4px}
+.st-menu .st-native:hover{background:var(--umber)}
+.st-menu .st-native[hidden]{display:none}
 
 .st-toast{min-height:22px;margin-top:12px;font-size:14px;color:var(--bronze)}
