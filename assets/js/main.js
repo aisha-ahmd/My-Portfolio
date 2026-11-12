@@ -55,7 +55,7 @@
       gallery: { en: 'Grateful',   ar: 'امتنان', bg: '#EFE6D8', ink: '#0F0C09', acc: '#967C5D', glow: '#E9B872', words: [['Kindness', 'لُطف'], ['Gratitude', 'امتنان'], ['Contentment', 'رِضا']] },
       clay:    { en: 'Determined', ar: 'عزيمة',  bg: '#C0643C', ink: '#FBF2E6', acc: '#F6D9BE', glow: '#E08A5E', words: [['Courage', 'شجاعة'], ['Focus', 'تركيز'], ['Strength', 'قوّة']] },
       dusk:    { en: 'Thoughtful', ar: 'تأمّل',  bg: '#2F3A5C', ink: '#EFE6D8', acc: '#C9B48E', glow: '#5D6A86', words: [['Clarity', 'وضوح'], ['Growth', 'نموّ'], ['Wonder', 'دهشة']] },
-      night:   { en: 'Loved',      ar: 'حب',    bg: '#0F0C09', ink: '#EFE6D8', acc: '#C1A47E', glow: '#3A2E22', words: [['Love', 'حُبّ'], ['Tenderness', 'حنان'], ['Warmth', 'دفء']] }
+      night:   { en: 'Love',       ar: 'حب', top: 'FEELING LOVED',    bg: '#0F0C09', ink: '#EFE6D8', acc: '#C1A47E', glow: '#3A2E22', words: [['Rest', 'راحة'], ['Gentleness', 'رِفق'], ['Ease', 'يُسر']] }
     };
     let mood = 'gallery', idx = 0;
     const fit = (txt, font, max, start) => { let s = start; do { ctx.font = font.replace('$', s); s -= 4; } while (ctx.measureText(txt).width > max && s > 40); return s + 4; };
@@ -67,7 +67,7 @@
       ctx.fillStyle = g; ctx.beginPath(); ctx.arc(760, 430, 330, 0, Math.PI * 2); ctx.fill();
       ctx.fillStyle = m.ink; ctx.globalAlpha = .75; ctx.font = '500 22px Inter';
       ctx.textAlign = 'left'; ctx.fillText('A WORD FOR TODAY', 80, 110);
-      ctx.textAlign = 'right'; ctx.fillText('FEELING ' + m.en.toUpperCase(), W - 80, 110);
+      ctx.textAlign = 'right'; ctx.fillText(m.top || ('FEELING ' + m.en.toUpperCase()), W - 80, 110);
       ctx.globalAlpha = 1;
       const e = we + '.';
       const s = fit(e, 'italic 400 $px "Instrument Serif"', W - 160, 230);
