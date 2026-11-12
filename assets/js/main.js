@@ -72,7 +72,10 @@
   // ---- Intro: count, sun rises, name, curtain lifts ----
   const counter = { v: 0 };
   const countEl = document.getElementById('count');
-  const intro = gsap.timeline({ onComplete: () => { endIntro(); lenis && lenis.start(); ScrollTrigger.refresh(); } });
+  let opened = false;
+  const open = () => { if (opened) return; opened = true; endIntro(); lenis && lenis.start(); ScrollTrigger.refresh(); };
+  const intro = gsap.timeline({ onComplete: open });
+  setTimeout(() => { if (!opened) { intro.progress(1); open(); } }, 6000);
   intro
     .to(counter, { v: 100, duration: 1.8, ease: 'power2.inOut', onUpdate: () => countEl.textContent = Math.round(counter.v) }, 0)
     .to('.intro-sun', { top: '50%', duration: 1.8, ease: 'power3.out' }, 0)
