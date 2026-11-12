@@ -132,7 +132,20 @@
         setLinks(); const links = { whatsapp: 1, x: 1, facebook: 1, linkedin: 1, telegram: 1, email: 1 };
         if (links[s]) { if (s !== 'linkedin' && s !== 'facebook') { download(); say('Poster saved too, so you can attach it.'); } }
         else if (s === 'copy') { e.preventDefault(); try { await navigator.clipboard.writeText(shareText() + '\n' + wordUrl()); say('Link copied.'); } catch (_) { say(wordUrl()); } }
-        else if (s === 'instagram') { e.preventDefault(); download(); say('Poster saved. Open Instagram and add it to your story or a post.'); }
+        else if (s === 'instagram') {
+          e.preventDefault();
+          // Phones: open the share sheet with the poster so Instagram (post or story) can be picked directly
+          if (readyFile && navigator.share && navigator.canShare && navigator.canShare({ files: [readyFile] })) {
+            navigator.share({ files: [readyFile] }).then(() => {}, err => {
+              if (!err || err.name !== 'AbortError') { download(); window.open('https://www.instagram.com/', '_blank', 'noopener'); }
+            });
+            say('Choose Instagram from the list, then Story or Post.');
+          } else {
+            // Computers: save the poster and open Instagram in a new tab, ready to create a post
+            download(); window.open('https://www.instagram.com/', '_blank', 'noopener');
+            say('Poster saved. On Instagram, click "+ Create" and choose the poster from your Downloads.');
+          }
+        }
         openMenu(false);
       });
     });

@@ -36,7 +36,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:400}
 .dot{width:10px;height:10px;border-radius:50%;background:currentColor}
 .links{display:flex;gap:28px;font-size:14px}
 .links a{opacity:.8;transition:opacity .2s}.links a:hover{opacity:1}
-.pill{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:#fff;color:#000;font-size:14px;font-weight:500;transition:transform .3s}
+.pill{font-family:var(--sans);display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:#fff;color:#000;font-size:14px;font-weight:500;transition:transform .3s}
 .pill:hover{transform:scale(1.05)}
 
 /* shared */
