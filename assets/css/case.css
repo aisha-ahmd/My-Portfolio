@@ -62,3 +62,8 @@ main{max-width:1320px;margin:0 auto;padding:0 6vw}
  .back{font-size:13px}
 }
 @media (prefers-reduced-motion:reduce){.cfeature{animation:none}.cgallery figure,.capproach li,.cbrief,.cmeasure{opacity:1;transform:none}}
+.cresults{padding:12vh 0 0}
+.cr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:18px;border-top:1px solid color-mix(in srgb,var(--c) 30%,transparent);padding-top:26px}
+.cr-grid b{display:block;font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(48px,6vw,88px);line-height:1;color:var(--a)}
+.cr-grid span{display:block;margin-top:10px;font-size:15px;opacity:.75;max-width:260px}
+@media(max-width:760px){.cr-grid{grid-template-columns:1fr;gap:26px}}
